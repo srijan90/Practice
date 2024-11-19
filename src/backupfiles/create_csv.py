@@ -17,7 +17,7 @@ def show_page():
     data = pd.DataFrame("", index=range(num_rows), columns=column_names)
 
     st.write("Enter your data:")
-    edited_data = st.experimental_data_editor(data, key="data_editor")
+    edited_data = st.data_editor(data, key="data_editor")
 
     # Generate CSV
     if st.button("Generate CSV"):

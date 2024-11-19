@@ -1,29 +1,27 @@
 import streamlit as st
-from pages import create_csv_page, create_csv_pyspark_page
+from pages import create_csv_page,create_csv_pyspark_page
 
-def main():
-    st.sidebar.title("Navigation")
+def show_home():
+    st.title("Home")
+    st.write("Welcome to the app! Use the sidebar to navigate to different pages.")
+#
+# def show_create_csv():
+#     st.title("Create CSV")
+#     st.write("This is the Create CSV page.")
+#
+# def show_create_csv_pyspark():
+#     st.title("Create CSV and PySpark Code Snippet")
+#     st.write("This is the Create CSV and PySpark Code Snippet page.")
 
-    # Display links to each page directly in the sidebar
-    if st.sidebar.button("Home"):
-        st.session_state.page = "home"
-    if st.sidebar.button("Create CSV"):
-        st.session_state.page = "create_csv"
-    if st.sidebar.button("Create CSV and PySpark Code Snippet"):
-        st.session_state.page = "create_csv_and_pyspark_code_snippet"
+# Sidebar navigation
+st.sidebar.title("Navigation")
+page = st.sidebar.radio("Go to", ["Home", "Create CSV", "Create CSV and PySpark Code Snippet"])
 
-    # Set default page if not already set
-    if "page" not in st.session_state:
-        st.session_state.page = "home"
-
-    # Determine which page to show based on the session state
-    if st.session_state.page == "home":
-        st.title("Home")
-        st.write("Welcome to the app! Use the sidebar to navigate to different pages.")
-    elif st.session_state.page == "create_csv":
-        create_csv_page.show_page()
-    elif st.session_state.page == "create_csv_and_pyspark_code_snippet":
-        create_csv_pyspark_page.show_page()
-
-if __name__ == "__main__":
-    main()
+# Show the selected page
+if page == "Home":
+    show_home()
+elif page == "Create CSV":
+    # show_create_csv()
+    create_csv_page.show_page()
+elif page == "Create CSV and PySpark Code Snippet":
+    create_csv_pyspark_page.show_page()
